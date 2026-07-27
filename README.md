@@ -1,10 +1,10 @@
 <h1>Hi, I'm Gabriel! <br/><a href="https://github.com/Gabriel-Bastien">IT Support Specialist</a>, <a href="https://www.linkedin.com/in/gabrielbastien7/">Governance Risk and Compliance Analyst</a>, <a href=https://www.youtube.com/channel/UCMzOFMsPCZb6FQYYpqgYrww">IT Security Analyst</a></h1>
 
-<h2>👨‍💻 Software Development Projects:</h2>
+<h2>👨‍💻 IT Support Projects:</h2>
 
-- <b>Data Structures and Algorithms Practice (AlgoExpert)</b>
-  - [Praciting DS & Algos in Python](https://github.com/joshmadakor1/Algorithms-Practice)
-- <b>Full Stack Web App (React, NodeJS, Azure, and Machine Learning Components)</b>
+- <b> Windows 2025 Server Provisioning & DC Promotion Lab (AWS EC2)</b>
+  - [Password Reset in Active Directory](https://github.com/joshmadakor1/Algorithms-Practice)
+- <b>Identity & Access Provisioning Within Active Directory </b>
   - [Image Analysis Middleware](https://github.com/joshmadakor1/4chan-Image-Analysis-Middleware-C964) <b><i>(Potentially NSFW)</b></i>
 - <b>PowerShell</b>
   - [Windows EventLog: Failed RDP Logins Source IP to full GeoData Conversion](https://github.com/joshmadakor1/Sentinel-Lab)
