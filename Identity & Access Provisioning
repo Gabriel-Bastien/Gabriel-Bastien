@@ -1,0 +1,156 @@
+"""# Active Directory Domain Services (AD DS) Promotion on Windows Server 2025 (AWS EC2)
+
+![Windows Server 2025](https://img.shields.io/badge/OS-Windows%20Server%202025%20Datacenter-blue?style=for-the-badge&logo=windows)
+![AWS EC2](https://img.shields.io/badge/Cloud-AWS%20EC2%20t3.micro-FF9900?style=for-the-badge&logo=amazon-aws)
+![Active Directory](https://img.shields.io/badge/Role-Active%20Directory%20Domain%20Services-0078D4?style=for-the-badge&logo=microsoft)
+![Status](https://img.shields.io/badge/Deployment-Completed-success?style=for-the-badge)
+
+## 📌 Project Overview
+
+This technical documentation provides a step-by-step walkthrough of provisioning an AWS EC2 instance running **Microsoft Windows Server 2025 Datacenter**, configuring static networking and DNS settings, installing the **Active Directory Domain Services (AD DS)** role, and promoting the server to a Primary Domain Controller (DC) for the domain `DemoAD.Local2`.
+
+This repository serves as a practical lab reference for cloud engineers, systems administrators, and IT specialists implementing hybrid or cloud-native Active Directory environments in AWS.
+
+---
+
+## 📐 Environment & Architecture Specifications
+
+| Specification Parameter | Value / Configuration | Notes / Description |
+| :--- | :--- | :--- |
+| **Cloud Provider** | Amazon Web Services (AWS) | Region: `us-east-1` (N. Virginia) |
+| **Virtual Machine Instance** | `t3.micro` | 1 vCPU, 0.86 GB RAM (Lab Tier) |
+| **Operating System** | **Microsoft Windows Server 2025 Datacenter** | OS Version: `10.0.26100.32860` |
+| **Host Name** | `EC2AMAZ-GHG7NUN` | Default AWS Windows Hostname |
+| **Target Active Directory Domain** | `DemoAD.Local2` | Domain Functional Level: Windows Server 2025 |
+| **IPv4 Address** | `172.31.23.93` | Static Internal IPv4 |
+| **Subnet Mask** | `255.255.240.0` | `/20` CIDR Subnet |
+| **Default Gateway** | `172.31.16.1` | AWS VPC Gateway Router |
+| **Preferred DNS Server** | `172.31.23.93` | Points to self (Local DC/DNS) |
+| **Alternate DNS Server** | `172.31.16.1` | Fallback AWS VPC DNS Resolver |
+
+---
+
+## 🚀 Deployment Step-by-Step Walkthrough
+
+### Step 1: Navigating to AWS EC2 Dashboard & Launching Instance
+
+1. Log in to the AWS Management Console (`us-east-1`).
+2. Navigate to the **EC2 Console** under Cloud Compute Services.
+3. Click **Launch Instance** to initiate VM setup.
+
+![AWS EC2 Console Navigation](./Screenshot%202026-08-16%20202701.jpg)
+*Figure 1: Accessing the EC2 service menu within the AWS Console.*
+
+---
+
+### Step 2: Provisioning Windows Server 2025 Instance
+
+1. In the **Name and tags** section, set the instance name to `DemoActiveDirectory`.
+2. Under **Application and OS Images (Amazon Machine Image)**, select **Windows** and choose **Microsoft Windows Server 2025 Datacenter Edition**.
+3. Set the **Instance Type** to `t3.micro` (or higher depending on requirements).
+4. Select or create an appropriate **Key Pair** for RDP decryption.
+5. In **Network Settings**, ensure the instance is assigned to the target VPC/Subnet with an auto-assigned public IP or elastic IP for remote administration.
+6. Click **Launch Instance**.
+
+![AWS Instance Setup](./Screenshot%202026-08-16%20220315.jpg)
+*Figure 2: Configuring the EC2 instance named `DemoActiveDirectory` with Windows Server 2025.*
+
+---
+
+### Step 3: Server Verification & Static IP Network Configuration
+
+Once connected via Remote Desktop Protocol (RDP):
+
+1. Open **Command Prompt** as Administrator and execute `ipconfig /all` to note the current DHCP IP assignment.
+   - **IPv4 Address:** `172.31.23.93`
+   - **Subnet Mask:** `255.255.240.0`
+   - **Default Gateway:** `172.31.16.1`
+
+![ipconfig Output](./Screenshot%202026-08-16%20220641.png)
+*Figure 3: Command Prompt displaying network interface configuration via `ipconfig`.*
+
+2. Open **Control Panel** > **Network and Internet** > **Network Connections**.
+3. Right-click the **Ethernet** network interface, select **Properties**, and double-click **Internet Protocol Version 4 (TCP/IPv4)**.
+4. Convert the interface from dynamic DHCP to static assignment:
+   - **IP address:** `172.31.23.93`
+   - **Subnet mask:** `255.255.240.0`
+   - **Default gateway:** `172.31.16.1`
+   - **Preferred DNS server:** `172.31.23.93` *(Points to self for local DNS resolution)*
+   - **Alternate DNS server:** `172.31.16.1` *(AWS VPC DNS Resolver)*
+5. Click **OK** to save the TCP/IPv4 properties.
+
+![Network Properties Setup](./Screenshot%202026-08-16%20220809.jpg)
+*Figure 4: Assigning static IPv4 address and configuring local preferred DNS bindings.*
+
+---
+
+### Step 4: Installing Active Directory Domain Services (AD DS) Role
+
+1. Open **Server Manager** dashboard.
+2. Click **Add roles and features**.
+
+![Server Manager Dashboard](./Screenshot%202026-08-16%20220836.jpg)
+*Figure 5: Launching the Add Roles and Features Wizard from Server Manager.*
+
+3. Advance through the wizard:
+   - **Installation Type:** *Role-based or feature-based installation*
+   - **Server Selection:** Select `EC2AMAZ-GHG7NUN` (`172.31.23.93`)
+   - **Server Roles:** Check **Active Directory Domain Services**.
+4. A pop-up dialog will prompt to add required features including **Remote Server Administration Tools (RSAT)** (Group Policy Management, AD DS Tools, PowerShell Module). Click **Add Features**.
+5. Click **Next** through Features and AD DS summary screens, then click **Install**.
+
+![Add Roles and Features Popup](./Screenshot%202026-08-16%20220912.jpg)
+*Figure 6: Confirming installation of required RSAT tools and AD DS binaries.*
+
+---
+
+### Step 5: Promoting the Server to a Domain Controller
+
+1. Once the role installation completes, click the **Promote this server to a domain controller** link on the wizard results page (or click the flag notification banner in Server Manager).
+
+![Promote Server to Domain Controller](./Screenshot%202026-08-16%20220949.jpg)
+*Figure 7: Initiation link for the Active Directory Domain Services Configuration Wizard.*
+
+2. In the **Active Directory Domain Services Configuration Wizard**:
+   - **Deployment Operation:** Select **Add a new forest**.
+   - **Root domain name:** Enter `DemoAD.Local2`.
+3. **Domain Controller Options:**
+   - Leave **Domain Name System (DNS) server** and **Global Catalog (GC)** checked.
+   - Enter a secure **Directory Services Restore Mode (DSRM)** password.
+4. **NetBIOS Name:** Accept default (`DEMOAD`).
+5. **Paths:** Keep default paths for `Database folder`, `Log files folder`, and `SYSVOL folder` (`C:\\Windows\\NTDS` and `C:\\Windows\\SYSVOL`).
+6. **Prerequisites Check:** Verify all prerequisite checks pass successfully, then click **Install**.
+7. The server will automatically reboot upon completion.
+
+---
+
+### Step 6: Post-Deployment Verification & Local Server Status
+
+1. Log back into the server using domain administrator credentials (e.g., `DEMOAD\\Administrator`).
+2. Open **Server Manager** > **Local Server**.
+3. Verify domain membership and system properties:
+   - **Domain:** `DemoAD.Local2`
+   - **Operating System Version:** `Microsoft Windows Server 2025 Datacenter`
+   - **Hardware/VM Profile:** `Amazon EC2 t3.micro`
+
+![Local Server Verification](./Screenshot%202026-08-16%20221107.jpg)
+*Figure 8: Server Manager properties confirming successful domain promotion to `DemoAD.Local2` on Windows Server 2025.*
+
+---
+
+## 🛠️ Verification & PowerShell Diagnostic Commands
+
+After promotion, execute the following PowerShell commands to ensure directory health and replication readiness:
+
+```powershell
+# 1. Verify Domain Controller status
+Get-ADDomainController -Filter * | Select-Name, IPv4Address, OperatingSystem
+
+# 2. Check Active Directory Domain details
+Get-ADDomain | Select-Object Name, DomainMode, Forest
+
+# 3. Verify DNS Service status
+Get-Service -Name DNS
+
+# 4. Run Directory Service Health Diagnostics
+dcdiag /v
