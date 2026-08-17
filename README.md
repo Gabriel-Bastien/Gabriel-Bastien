@@ -5,7 +5,7 @@
 - <b> Windows 2025 Server Provisioning & DC Promotion Lab (AWS EC2)</b>
   - [Password Reset in Active Directory](https://github.com/joshmadakor1/Algorithms-Practice)
 - <b>Identity & Access Provisioning Within Active Directory </b>
-  - [Image Analysis Middleware](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning) <b><i>(Potentially NSFW)</b></i>
+  - [Promotion to Domain Controller ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning) 
 - <b>PowerShell</b>
   - [Windows EventLog: Failed RDP Logins Source IP to full GeoData Conversion](https://github.com/joshmadakor1/Sentinel-Lab)
   - [JWipe (Disk Wiping Utility)](https://github.com/joshmadakor1/Jwipe.PowerShell)
