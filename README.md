@@ -4,8 +4,10 @@
 
 - <b> Windows 2025 Server Provisioning & DC Promotion Lab (AWS EC2)</b>
   - [Password Reset in Active Directory](https://github.com/Gabriel-Bastien/Password-Reset-and-Ticket-Resolution/blob/main/Readme2.md)
+    
 - <b>Identity & Access Provisioning Within Active Directory </b>
-  - [Promotion to Domain Controller ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning) 
+  - [Promotion to Domain Controller ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning)
+    
 - <b>PowerShell</b>
   - [Active Directory Bulk User Creation](https://github.com/Gabriel-Bastien/Bulk-User-Creation-in-AD-with-PowerShell-commands-)
 
