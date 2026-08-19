@@ -7,7 +7,7 @@
 - <b>Identity & Access Provisioning Within Active Directory </b>
   - [Promotion to Domain Controller ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning) 
 - <b>PowerShell</b>
-  - [Active Directory Bulk User Creation](https://github.com/joshmadakor1/AD_PS)
+  - [Active Directory Bulk User Creation]([https://github.com/joshmadakor1/AD_PS](https://github.com/Gabriel-Bastien/Bulk-User-Creation-in-AD-with-PowerShell-commands-))
 
 
 
