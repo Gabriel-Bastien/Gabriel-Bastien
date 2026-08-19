@@ -2,24 +2,23 @@
 
 <h2>👨‍💻 IT Support Projects:</h2>
 
-- <b> Windows 2025 Server Provisioning & DC Promotion Lab (AWS EC2)</b>
+- <b> Server/Domain Creation  </b>
+  - [Provisioning Windows Server & DC Promotion](https://github.com/Gabriel-Bastien/Active-Directory-Domain-Services-AD-DS-Promotion-on-Windows-Server-2025-AWS-EC2-)
+
+- <b> Password Reset & Ticketing </b>
   - [Password Reset in Active Directory](https://github.com/Gabriel-Bastien/Password-Reset-and-Ticket-Resolution/blob/main/Readme2.md)
     
-- <b>Identity & Access Provisioning Within Active Directory </b>
-  - [Promotion to Domain Controller ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning)
+- <b>User, Group, OU assignment and Management </b>
+  - [IAM Management ](https://github.com/Gabriel-Bastien/Gabriel-Bastien/blob/main/Identity%20%26%20Access%20Provisioning)
     
 - <b>PowerShell</b>
   - [Active Directory Bulk User Creation](https://github.com/Gabriel-Bastien/Bulk-User-Creation-in-AD-with-PowerShell-commands-)
 
+ - <b>Group Policy Management</b>
+     - [Organizational Policies RBAC and Permissions](https://github.com/Gabriel-Bastien/Organizational-Group-Policy-Management-)
 
 
-<h2>📺 Popular YouTube Videos</h2>
 
-- [How to get into Cybersecurity Starting From Zero](https://www.youtube.com/watch?v=a83ASGn_V_s)
-- [A Day in the Life of a Cybersecurity Anayst](https://www.youtube.com/watch?v=uHy3oM7NnoU)
-- [How to Create a KeyLogger (C#)](https://www.youtube.com/watch?v=N-L9hklSlNk)
-- [Ransomware Demonstration (C#)](https://www.youtube.com/watch?v=OfvdQeh79s0)
-- [Is WGU Legit?](https://www.youtube.com/watch?v=E2MwRWxDBkA)
 
 <h2>  Connect with me:</h2>
 
